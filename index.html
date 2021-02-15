@@ -34,23 +34,31 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
-<body>
+<body style="background-color:rgb(201, 233, 253)">
 
   <div class="container one-bottom" style="margin-top: 50px">
     <div class="ten columns">
-      <h2>Mobility on Demand Systems: Data-Driven Analysis, Simulation, Visualization</h2>
+      <h2>Charlotte Joy Rides: A Visual Representation</h2>
       <p>
         ARCH 6306/6050, DSBA 6010, ITIS 8010/6010: Wednesdays 6pm-8:30pm, Taught Online
         <br>
-        Dr. Dimitris Papanikolaou | dpapanik@uncc.edu | Urban Synergetics Lab | https://urbansynergeticslab.net
+        Anibal Robles | Brian Ferrell | Coral Rembert | Ryan Carriere |  
+        Charlottejoyrides| 	https://charlotte.bcycle.com
       </p>
+      <hr class="line">
     </div>
     <div class="two columns">
-      <a href="https://urbansynergeticslab.net/"><img class="scale-with-grid" src="img/LabLogo_dark_cropped.png"></a>
+      <a href="href="https://charlottejoyrides.com/"><img class="scale-with-grid"
+        src="https://www.bcycle.com/images/librariesprovider44/default-album/joyrides_logo_white_and_green.png" width="300" style="float:right;"></a>
     </div>
     <div class="twelve columns">
-      <h3>B-Cycle Stations in Charlotte, NC</h3>
-      <h5>B-Cycle is a docked bike sharing MoD system implemented in various locations, including Charlotte, NC. </h5>
+      <h3>Introduction</h3>
+      <h5>Bike sharing, an up-and-coming transportation style in various cities and urban areas, gives passengers easy access to move around town. 
+      In Charlotte, North Carolina, B-Cycle - a docked Bike Sharing MoD system - provides 343 bikes and 34 stations throughout the Queen City for easy transportation. 
+      Charlotte B-cycle launched in 2012 with only 200 bikes and 20 stations, but through various sponsorships, grants, and support over the last eight years, the company has grown to its current size. 
+      In addition to providing its services, Charlotte B-cycle also works to support the local community. 
+      When you see one of their bikes whizzing around town, you'll  notice each bike sports a piece of art created by a local artist.
+      <br> Below we have different map plots that display where our data is, where the docks are located, and trends that occur. </h5>
     </div>
   </div>
 
@@ -58,7 +66,7 @@
     <div class="twelve columns">
       <h3>Location<h3>
       <h5>
-        The location of this data is Charlotte, NC.
+        The location of this data is Charlotte, NC. This shows how to create a map using Leaflet.js and MapBox.js, and center the map at a specified pair of lat/long coordinates.
       </h5>
     </div>
   </div>
@@ -70,7 +78,7 @@
     <div class="twelve columns">
       <h3>Station Location</h3>
       <h5>
-        B-Cycle locations of stations in Charlotte, NC.
+        B-Cycle locations of stations in Charlotte, NC with their station_ID,street address, number of bikes rented, and number of docks available.
       </h5>
     </div>
   </div>
@@ -160,7 +168,7 @@
         fill : true,
         Color: d3.rgb(16,52,166).brighter(),
       };
-      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2);
+      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2).bindPopup("Station_ID: " + bike.station_id + "<br>Adrress: </br>"+ bike.address + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);;
     });
 
     var map_3 = L.mapbox.map('map_3')
