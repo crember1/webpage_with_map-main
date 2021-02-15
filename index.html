@@ -168,7 +168,7 @@
         fill : true,
         Color: d3.rgb(16,52,166).brighter(),
       };
-      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2).bindPopup("Station_ID: " + bike.station_id + "<br>Adrress: </br>"+ bike.address + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);;
+      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2).bindPopup("Station_ID: " + bike.station_id + "<br>Adrress: </br>"+ bike.address + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
     });
 
     var map_3 = L.mapbox.map('map_3')
