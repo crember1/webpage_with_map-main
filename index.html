@@ -134,8 +134,8 @@
   L.mapbox.accessToken = 'pk.eyJ1IjoiZGltcCIsImEiOiJkRnlra3RjIn0.E9CTYzNUEx0yb3dcfV4SiA';
 
   var map_1 = L.mapbox.map('map_1')
-  .setView([35.2272,-80.8461], 9)
-  .addLayer(L.mapbox.styleLayer('mapbox://styles/dimp/citf6n01300692hmlxnnrv6wd'));
+  .setView([35.22732,-80.83827], 10)
+  .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
   map_1
   .scrollWheelZoom.disable();
 
@@ -144,8 +144,8 @@
     console.log(json);
 
     var map_2 = L.mapbox.map('map_2')
-    .setView([35.2272,-80.8461], 12)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/dimp/citf6n01300692hmlxnnrv6wd'));
+    .setView([35.22732,-80.83827], 12)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
     map_2
     .scrollWheelZoom.disable();
 
@@ -154,16 +154,18 @@
       station.lng = +station.lon;
       var path_options = {
         radius :  2,
-        color : d3.rgb(88,206,227).brighter(),
+        color : d3.rgb(16,52,166).brighter(),
         stroke: true,
         weight : 1,
+        fill : true,
+        Color: d3.rgb(16,52,166).brighter(),
       };
       L.circleMarker([station.lat, station.lon], path_options).addTo(map_2);
     });
 
     var map_3 = L.mapbox.map('map_3')
-    .setView([35.2272,-80.8461], 9)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/dimp/ck9mf0x8q3o521iojo2qmmp52'));
+    .setView([35.22732,-80.83827], 12)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
     map_3
     .scrollWheelZoom.disable();
 
@@ -172,10 +174,10 @@
       station.lng = +station.lon;
       var inventory_level = station.num_bikes_available / (station.num_bikes_available+station.num_docks_available);
       var path_options = {
-        radius :  0.14 * (station.num_bikes_available + station.num_docks_available),
-        color : d3.rgb(88,206,227).brighter(),
+        radius :  0.5 * (station.num_bikes_available + station.num_docks_available),
+        color : d3.rgb(16,52,166).brighter(),
         fillColor : (function(){
-          return inventory_level > 0.5? d3.rgb(88,206,227) : d3.rgb(88,206,227).darker(2)
+          return inventory_level > 0.5? d3.rgb(16,52,166) : d3.rgb(16,52,166).darker(2)
         })(),
         stroke: true,
         weight : 1,
