@@ -49,7 +49,7 @@
     </div>
     <div class="two columns">
       <a href="href="https://charlottejoyrides.com/"><img class="scale-with-grid"
-        src="https://www.bcycle.com/images/librariesprovider44/default-album/joyrides_logo_white_and_green.png" width="300" style="float:right;"></a>
+        src="https://www.bcycle.com/images/librariesprovider44/default-album/joyrides_logo_white_and_green.png" height= "300" width="300" style="float:right;"></a>
     </div>
     <div class="twelve columns">
       <h3>Introduction</h3>
@@ -78,7 +78,7 @@
     <div class="twelve columns">
       <h3>Station Location</h3>
       <h5>
-        B-Cycle locations of stations in Charlotte, NC with their station_ID,street address, number of bikes rented, and number of docks available.
+        B-Cycle locations of stations in Charlotte, NC with their station_ID, street address, number of bikes rented, and number of docks available.
       </h5>
     </div>
   </div>
@@ -168,7 +168,7 @@
         fill : true,
         Color: d3.rgb(16,52,166).brighter(),
       };
-      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2).bindPopup("Station_ID: " + station.station_id + "<br>Adrress: </br>"+ station.address + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
+      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2).bindPopup("Station_ID: " + station.station_id + "<br>Address: </br>"+ station.address + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
     });
 
     var map_3 = L.mapbox.map('map_3')
