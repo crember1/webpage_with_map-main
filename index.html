@@ -134,45 +134,45 @@
   L.mapbox.accessToken = 'pk.eyJ1IjoiZGltcCIsImEiOiJkRnlra3RjIn0.E9CTYzNUEx0yb3dcfV4SiA';
 
   var map_1 = L.mapbox.map('map_1')
-  .setView([40, -74.50], 9)
+  .setView([35.2272,-80.8461], 9)
   .addLayer(L.mapbox.styleLayer('mapbox://styles/dimp/citf6n01300692hmlxnnrv6wd'));
   map_1
   .scrollWheelZoom.disable();
 
 
-  d3.json("https://api.citybik.es/v2/networks/ford-gobike", function(data) {
-    console.log(data);
+  d3.json("mergedFiles.json", function(json) {
+    console.log(json);
 
     var map_2 = L.mapbox.map('map_2')
-    .setView([data.network.location.latitude, data.network.location.longitude], 10)
+    .setView([35.2272,-80.8461], 12)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/dimp/citf6n01300692hmlxnnrv6wd'));
     map_2
     .scrollWheelZoom.disable();
 
-    data.network.stations.forEach(function(station){
-      station.lat = +station.latitude;
-      station.lng = +station.longitude;
+    json.data.stations.forEach(function(station){
+      station.lat = +station.lat;
+      station.lng = +station.lon;
       var path_options = {
         radius :  2,
         color : d3.rgb(88,206,227).brighter(),
         stroke: true,
         weight : 1,
       };
-      L.circleMarker([station.latitude, station.longitude], path_options).addTo(map_2);
+      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2);
     });
 
     var map_3 = L.mapbox.map('map_3')
-    .setView([data.network.location.latitude, data.network.location.longitude], 11)
+    .setView([35.2272,-80.8461], 9)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/dimp/ck9mf0x8q3o521iojo2qmmp52'));
     map_3
     .scrollWheelZoom.disable();
 
-    data.network.stations.forEach(function(station){
-      station.lat = +station.latitude;
-      station.lng = +station.longitude;
-      var inventory_level = station.free_bikes / (station.free_bikes+station.empty_slots);
+    json.data.stations.forEach(function(station){
+      station.lat = +station.lat;
+      station.lng = +station.lon;
+      var inventory_level = station.num_bikes_available / (station.num_bikes_available+station.num_docks_available);
       var path_options = {
-        radius :  0.14 * (station.free_bikes + station.empty_slots),
+        radius :  0.14 * (station.num_bikes_available + station.num_docks_available),
         color : d3.rgb(88,206,227).brighter(),
         fillColor : (function(){
           return inventory_level > 0.5? d3.rgb(88,206,227) : d3.rgb(88,206,227).darker(2)
@@ -182,7 +182,7 @@
         opacity : 1,
         fillOpacity : 0.8
       };
-      L.circleMarker([station.latitude, station.longitude], path_options).addTo(map_3);
+      L.circleMarker([station.lat, station.lon], path_options).addTo(map_3);
     });
   });
 
