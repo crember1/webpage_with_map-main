@@ -55,7 +55,7 @@
       <hr class="line1" width="100%">
     </div>
     <div class="two columns">
-      <a href="href="https://charlottejoyrides.com/"><img class="scale-with-grid"
+      <a href="https://charlottejoyrides.com/" target="_blank"><img class="scale-with-grid"
         src="https://www.bcycle.com/images/librariesprovider44/default-album/joyrides_logo_white_and_green.png" height = "200" width="400" style="float:right;"></a>
     </div>
     <div class="row">
@@ -113,7 +113,6 @@
 
   <div id="map_3" class="one-bottom"></div>
                                                                      
-
 
   <div class="container one-bottom" >
     <h3>Below are maps that show relationships between B-Cycle station data and other attributes within the Charlotte area.</h3>
@@ -225,7 +224,25 @@
         radius :  0.5 * (station.num_bikes_available + station.num_docks_available),
         color : d3.rgb(16,52,166).brighter(),
         fillColor : (function(){
-          return inventory_level > 0.5? d3.rgb(16,52,166) : d3.rgb(16,52,166).darker(2)
+          if(station.num_bikes_available_types.electric > 0) {
+            if(inventory_level > 0.5) {
+              return d3.rgb(16,52,166).darker(2)
+            }
+            return d3.rgb(16,52,166)
+          }
+          if(station.num_bikes_available_types.smart > 0) {
+            if(inventory_level > 0.5) {
+              return d3.rgb(245, 141, 66).darker(2)
+            }
+            return d3.rgb(245, 141, 66)
+          }
+          if(station.num_bikes_available_types.classic > 0) {
+            if(inventory_level > 0.5) {
+              return d3.rgb(166, 16, 151).darker(2)
+            }
+            return d3.rgb(166, 16, 151)
+          }
+          //return inventory_level > 0.5? d3.rgb(16,52,166) : d3.rgb(16,52,166).darker(2)
         })(),
         stroke: true,
         weight : 1,
