@@ -152,7 +152,19 @@
   map_1
   .scrollWheelZoom.disable();
 
-
+                                   
+  var path_o = {
+        radius :  6,
+        color : d3.rgb(16,52,166).brighter(),
+        stroke: true,
+        weight : 1,
+        fill : true,
+        Color: d3.rgb(16,52,166).brighter(),
+      };
+                                   
+  L.circleMarker([35.22732,-80.8382], path_o).addTo(map_1)
+                                   
+                                   
   d3.json("mergedFiles.json", function(json) {
     console.log(json);
 
@@ -161,6 +173,8 @@
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
     map_2
     .scrollWheelZoom.disable();
+                            
+  
 
     json.data.stations.forEach(function(station){
       station.lat = +station.lat;
