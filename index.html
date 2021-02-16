@@ -28,6 +28,22 @@
     hr.line1{
         border: solid rgba(0, 128, 0, 0.596); 
               }
+    
+    
+    
+       .image_block {
+  height: 175px;
+  width:175px;
+  position:relative;
+}
+.image_block a img{
+ margin:auto; /* Required */
+ position:absolute; /* Required */
+ bottom:0; /* Aligns at the bottom */
+ left:0;right:0; /* Aligns horizontal center */
+ max-height:100%; /* images bigger than 175 px  */
+ max-width:100%;  /* will be shrinked to size */ 
+}
   </style>
 
   <!-- D3 -->
@@ -111,19 +127,7 @@
     <h3>Below is an array of images organized into rows and columns.</h3>
   </div>
 
-   .image_block {
-  height: 175px;
-  width:175px;
-  position:relative;
-}
-.image_block a img{
- margin:auto; /* Required */
- position:absolute; /* Required */
- bottom:0; /* Aligns at the bottom */
- left:0;right:0; /* Aligns horizontal center */
- max-height:100%; /* images bigger than 175 px  */
- max-width:100%;  /* will be shrinked to size */ 
-}
+
                                    
   <div class="container one-bottom" >
       <img class="image_block" src="img/1-01.jpg">
