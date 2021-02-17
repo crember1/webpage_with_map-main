@@ -114,8 +114,11 @@ h4 {
       <h3 style="color:white">Station Accumulation Levels</h3>
       <h4 style="color:white">Fig. 3 </h4>                         
       <h5 style="color:white">
-        Accumulation levels of all B-Cycle stations located in Charlotte, NC. Represents total station availability.
+        Accumulation levels of all B-Cycle stations located in Charlotte, NC. Represents total station availability. 
       </h5>
+      <h7 style="color: white;">
+        (Blue are electric bikes, Green are classic bikes, and Orange are smart bikes).
+      </h7>
     </div>
   </div>
 
@@ -175,7 +178,7 @@ h4 {
     <h3 style="color:white">Coral Rembert</h3>
     <h5 style="color:white">Coral Rembert contributed to creating the Github page, finding online data, map style and data representation style (for Fig. 1-3), page organization, adding descriptions to maps, and discussion.</h5>
     <h3 style="color:white">Anibal Robles</h3>
-    <h5 style="color:white">Anibal Robles contributed to this, this, and that.</h5>
+    <h5 style="color:white">Anibal Robles contributed to merging the data files and finding how to make it work in Mapbox, helped in map representation, and bug fixes.</h5>
     <h3 style="color:white">Brian Ferrell</h3>
     <h5 style="color:white">Brian Ferrell contributed to creating diagrams using Mecklenburg county and B-Cycle data, webpage layout, research and conclusion. </h5>
   </div>
@@ -258,9 +261,9 @@ h4 {
           }
           if(station.num_bikes_available_types.classic > 0) {
             if(inventory_level > 0.5) {
-              return d3.rgb(166, 16, 151).darker(2)
+              return d3.rgb(38, 166, 16).darker(2)
             }
-            return d3.rgb(166, 16, 151)
+            return d3.rgb(38, 166, 16)
           }
           //return inventory_level > 0.5? d3.rgb(16,52,166) : d3.rgb(16,52,166).darker(2)
         })(),
