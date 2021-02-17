@@ -181,7 +181,7 @@ h4 {
   .setView([35.22732,-80.83827], 10)
   .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
   map_1
-  .scrollWheelZoom.disable();
+  .scrollWheelZoom.enable();
 
                                    
   var path_o = {
@@ -203,7 +203,7 @@ h4 {
     .setView([35.22732,-80.83827], 12)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
     map_2
-    .scrollWheelZoom.disable();
+    .scrollWheelZoom.enable();
                             
   
 
@@ -225,7 +225,7 @@ h4 {
     .setView([35.22732,-80.83827], 12)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
     map_3
-    .scrollWheelZoom.disable();
+    .scrollWheelZoom.enable();
 
     json.data.stations.forEach(function(station){
       station.lat = +station.lat;
