@@ -209,8 +209,39 @@ h4 {
   L.circleMarker([35.22732,-80.8382], path_o).addTo(map_1)
                                    
                                    
-  d3.json("mergedFiles.json", function(json) {
-    console.log(json);
+  d3.csv("202006-bluebikes-tripdata.csv", function(tripData) {
+    //console.log(tripData);
+    
+    var number_of_trips = 0;
+    var number_of_stations = 0;
+
+    var trips = tripData.map(function(aData)
+    {
+      var trip = {};
+
+      //templates
+      //trip.something = +d["something"];
+      //trip.something = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["something"].slice(0,-5));
+
+      trip.starttime = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["starttime"].slice(0,-5));
+      trip.stoptime = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["stoptime"].slice(0,-5));
+      trip.tripduration = +d["tripduration"];
+      trip.start_station_id = +d["start station id"];
+      trip.end_station_id = +d["end station id"];
+      trip.start_station_name = +d["start station name"];
+      trip.end_station_name = +d["end station name"];
+      trip.start_station_name = +d["start station latitude"];
+      trip.end_station_name = +d["end station latitude"];
+      trip.start_station_name = +d["start station longitude"];
+      trip.end_station_name = +d["end station longitude"];
+      trip.bikeid = +d["bikeid"];
+      trip.usertype = +d["usertype"];
+      trip.postalcode = +d["postalcode"];
+      
+      return trip;
+    })
+
+    number_of_trips = trips.length;
 
     var map_2 = L.mapbox.map('map_2')
     .setView([35.22732,-80.83827], 12)
@@ -240,6 +271,7 @@ h4 {
     map_3
     .scrollWheelZoom.disable();
 
+    /*
     json.data.stations.forEach(function(station){
       station.lat = +station.lat;
       station.lng = +station.lon;
@@ -275,6 +307,7 @@ h4 {
       };
       L.circleMarker([station.lat, station.lon], path_options).addTo(map_3);
     });
+    */
   });
 
 
