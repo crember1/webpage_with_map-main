@@ -221,39 +221,52 @@ h4 {
 
       //templates
       //trip.something = +d["something"];
+
+      //time.format not working
+      //https://stackoverflow.com/a/39370458
+      //parse not working
+      //
       //trip.something = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["something"].slice(0,-5));
 
-      trip.starttime = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["starttime"].slice(0,-5));
-      trip.stoptime = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["stoptime"].slice(0,-5));
-      trip.tripduration = +d["tripduration"];
-      trip.start_station_id = +d["start station id"];
-      trip.end_station_id = +d["end station id"];
-      trip.start_station_name = +d["start station name"];
-      trip.end_station_name = +d["end station name"];
-      trip.start_station_name = +d["start station latitude"];
-      trip.end_station_name = +d["end station latitude"];
-      trip.start_station_name = +d["start station longitude"];
-      trip.end_station_name = +d["end station longitude"];
-      trip.bikeid = +d["bikeid"];
-      trip.usertype = +d["usertype"];
-      trip.postalcode = +d["postalcode"];
+      //https://stackoverflow.com/a/37774663
+      var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+
+      //trip.starttime = d3.timeFormat("%Y-%m-%d %H:%M:%S").parse(aData["starttime"].slice(0,-5));
+      //trip.stoptime = d3.timeFormat("%Y-%m-%d %H:%M:%S").parse(aData["stoptime"].slice(0,-5));
+      trip.starttime = parseTime(aData["starttime"].slice(0,-5));
+      trip.stoptime = parseTime(aData["stoptime"].slice(0,-5));
+      trip.duration = +aData["tripduration"];
+      trip.start_station = +aData["start station id"];
+      trip.end_station = +aData["end station id"];
+      trip.start_station_name = +aData["start station name"];
+      trip.end_station_name = +aData["end station name"];
+      trip.start_station_lat = +aData["start station latitude"];
+      trip.end_station_lat = +aData["end station latitude"];
+      trip.start_station_lng = +aData["start station longitude"];
+      trip.end_station_lng = +aData["end station longitude"];
+      trip.bikeid = +aData["bikeid"];
+      trip.usertype = +aData["usertype"];
+      trip.postalcode = +aData["postalcode"];
       
       return trip;
-    })
+    });
 
-    number_of_trips = trips.length;
+    stationData = getStationsFromTrips(trips);
+			od_matrix = createMatrix(trips, stationData);
+
+		var color = d3.scaleLinear()
+			.domain([0, stationData.length])
+			.range([d3.rgb(255,0,0), d3.rgb(50,0,0)]);
 
     var map_2 = L.mapbox.map('map_2')
-    .setView([35.22732,-80.83827], 12)
+    .setView([42.354659,-71.053181], 12)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
     map_2
     .scrollWheelZoom.disable();
-                            
-  
 
-    json.data.stations.forEach(function(station){
-      station.lat = +station.lat;
-      station.lng = +station.lon;
+    stationData.forEach(function(station){
+      station.start_station_lat = +station.start_station_lat;
+      station.start_station_lng = +station.start_station_lng;
       var path_options = {
         radius :  6,
         color : d3.rgb(16,52,166).brighter(),
@@ -262,19 +275,19 @@ h4 {
         fill : true,
         Color: d3.rgb(16,52,166).brighter(),
       };
-      L.circleMarker([station.lat, station.lon], path_options).addTo(map_2).bindPopup("Station_ID: " + station.station_id + "<br>Address: </br>"+ station.address + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
+      L.circleMarker([station.start_station_lat, station.start_station_lng], path_options).addTo(map_2).bindPopup("Station_ID: " + station.start_station + "<br>Postal Code: </br>"+ station.postalcode);// + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
     });
-
+    
+    /*
     var map_3 = L.mapbox.map('map_3')
     .setView([35.22732,-80.83827], 12)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
     map_3
     .scrollWheelZoom.disable();
 
-    /*
-    json.data.stations.forEach(function(station){
-      station.lat = +station.lat;
-      station.lng = +station.lon;
+    stations.start_station_id.forEach(function(station){
+      station.start_station_latitude = +station.start_station_latitude;
+      station.start_station_longitude = +station.start_station_longitude;
       var inventory_level = station.num_bikes_available / (station.num_bikes_available+station.num_docks_available);
       var path_options = {
         radius :  0.5 * (station.num_bikes_available + station.num_docks_available),
@@ -308,6 +321,85 @@ h4 {
       L.circleMarker([station.lat, station.lon], path_options).addTo(map_3);
     });
     */
+
+
+    /********************/
+		/********************/
+		/***** FUNCTIONS ****/
+		/********************/
+		/********************/
+
+
+		function getStationsFromTrips(trips){
+			var stations = [];
+			var indexByStationName = d3.map();
+			var StationNameByIndex = d3.map();
+			var n = 0;
+			trips.forEach(function(trip) {
+				if (!indexByStationName.has(trip.start_station)) {
+					stations.push({
+						station_id : trip.start_station,
+						name : trip.start_station_name,
+						lat : trip.start_station_lat,
+						lng : trip.start_station_lng,
+					});
+					StationNameByIndex.set(n, trip.start_station);
+					indexByStationName.set(trip.start_station, n++);
+				}
+				if (!indexByStationName.has(trip.end_station)) {
+					stations.push({
+						station_id : trip.end_station,
+						name : trip.end_station_name,
+						lat : trip.end_station_lat,
+						lng : trip.end_station_lng,
+					});
+					StationNameByIndex.set(n, trip.end_station);
+					indexByStationName.set(trip.end_station, n++);
+				}
+
+			});
+			return stations;
+		}
+
+		function createMatrix(tripData, stationData){
+			var indexByNameTrip = d3.map();
+			var nameByIndexTrip = d3.map();
+			var n = 0;
+			tripData.forEach(function(d) {
+				if (!indexByNameTrip.has(d.start_station)) {
+					nameByIndexTrip.set(n, d.start_station);
+					indexByNameTrip.set(d.start_station, n++);
+				}
+
+			});
+
+			var indexByNameStation = d3.map();
+			var nameByIndexStation = d3.map();
+			var j = 0;
+			stationData.forEach(function(d) {
+				if (!indexByNameStation.has(d.name)) {
+					nameByIndexStation.set(j, d.name);
+					indexByNameStation.set(d.name, j++);
+				}
+			});
+
+
+			//Create the OD matrix
+			var od_matrix = [];
+			tripData.forEach(function(d) {
+				var  startStationIndex = indexByNameTrip.get(d.start_station);
+				var  endStationIndex = indexByNameTrip.get(d.end_station);
+				if (!od_matrix[startStationIndex]) {
+					od_matrix[startStationIndex] = [];
+					for (var i = 0; i < n; i++) {
+						od_matrix[startStationIndex][i] = 0;
+					}
+				}
+				od_matrix[startStationIndex][endStationIndex]++;;
+			});
+			return od_matrix;
+		}
+
   });
 
 
