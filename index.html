@@ -43,370 +43,510 @@ h4 {
   </style>
 
   <!-- D3 -->
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- <script src="https://d3js.org/d3.v4.min.js"></script>-->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
-<body style="background-color:rgba(16, 52, 166, .80)">
+  <body style="background-color:rgba(16, 52, 166, .80)">
 
-  <div class="container one-bottom" style="margin-top: 50px">
-    <div class="ten columns">
-      <h2 style="color:white">Charlotte Joy Rides: A Visual Representation</h2>
-      <p style="color:white">
-        ARCH 6306/6050, DSBA 6010, ITIS 8010/6010: Wednesdays 6pm-8:30pm, Taught Online
-        <br>
-        Anibal Robles | Brian Ferrell | Coral Rembert | Ryan Carriere |  
-        Charlottejoyrides | https://charlotte.bcycle.com
-      </p>
-      <hr class="line1" width="100%">
+    <div class="container one-bottom" style="margin-top: 50px">
+      <div class="ten columns">
+        <h2 style="color:white">Charlotte Joy Rides: A Visual Representation</h2>
+        <p style="color:white">
+          ARCH 6306/6050, DSBA 6010, ITIS 8010/6010: Wednesdays 6pm-8:30pm, Taught Online
+          <br>
+          Anibal Robles | Brian Ferrell | Coral Rembert | Ryan Carriere |  
+          Charlottejoyrides | https://charlotte.bcycle.com
+        </p>
+        <hr class="line1" width="100%">
+      </div>
+      <div class="two columns">
+        <a href="https://charlottejoyrides.com/" target="blank"><img class="scale-with-grid"
+          src="https://www.bcycle.com/images/librariesprovider44/default-album/joyrides_logo_white_and_green.png" height = "150" width = "300" style="float:right;"></a>
+      </div>
+      <div class="row">
+        <img class="four columns scale-with-grid quarter-bottom-rel" src="https://charlotteaxios-charlotteagenda.netdna-ssl.com/wp-content/uploads/2015/08/IMG_6486.jpg">
+        <img class="four columns scale-with-grid quarter-bottom-rel" src="https://bikeshare.cc/wp-content/uploads/2018/01/Charlotte_Bcycle_1.jpg">
+        <img class="four columns scale-with-grid quarter-bottom-rel" src="https://charlotteaxios-charlotteagenda.netdna-ssl.com/wp-content/uploads/2015/08/IMG_6489.jpg">
+      </div>
+      <div class="twelve columns">
+        <h3 style="color:white">Introduction</h3>
+        <h5 style="color:white">Bike sharing, an up-and-coming transportation style in various cities and urban areas, gives passengers easy access to move around town. 
+        In Charlotte, North Carolina, B-Cycle - a docked Bike Sharing MoD system - provides 343 bikes and 34 stations throughout the Queen City for easy transportation. 
+        Charlotte B-cycle launched in 2012 with only 200 bikes and 20 stations, but through various sponsorships, grants, and support over the last eight years, the company has grown to its current size. 
+        In addition to providing its services, Charlotte B-cycle also works to support the local community. 
+        When you see one of their bikes whizzing around town, you'll  notice each bike sports a piece of art created by a local artist.
+        <br> Below we have different map plots that display where our data is, where the docks are located, and accumulation trends that occur. </h5>
+      </div>
     </div>
-    <div class="two columns">
-      <a href="https://charlottejoyrides.com/" target="blank"><img class="scale-with-grid"
-        src="https://www.bcycle.com/images/librariesprovider44/default-album/joyrides_logo_white_and_green.png" height = "150" width = "300" style="float:right;"></a>
-    </div>
-    <div class="row">
-      <img class="four columns scale-with-grid quarter-bottom-rel" src="https://charlotteaxios-charlotteagenda.netdna-ssl.com/wp-content/uploads/2015/08/IMG_6486.jpg">
-      <img class="four columns scale-with-grid quarter-bottom-rel" src="https://bikeshare.cc/wp-content/uploads/2018/01/Charlotte_Bcycle_1.jpg">
-      <img class="four columns scale-with-grid quarter-bottom-rel" src="https://charlotteaxios-charlotteagenda.netdna-ssl.com/wp-content/uploads/2015/08/IMG_6489.jpg">
-    </div>
-    <div class="twelve columns">
-      <h3 style="color:white">Introduction</h3>
-      <h5 style="color:white">Bike sharing, an up-and-coming transportation style in various cities and urban areas, gives passengers easy access to move around town. 
-      In Charlotte, North Carolina, B-Cycle - a docked Bike Sharing MoD system - provides 343 bikes and 34 stations throughout the Queen City for easy transportation. 
-      Charlotte B-cycle launched in 2012 with only 200 bikes and 20 stations, but through various sponsorships, grants, and support over the last eight years, the company has grown to its current size. 
-      In addition to providing its services, Charlotte B-cycle also works to support the local community. 
-      When you see one of their bikes whizzing around town, you'll  notice each bike sports a piece of art created by a local artist.
-      <br> Below we have different map plots that display where our data is, where the docks are located, and accumulation trends that occur. </h5>
-    </div>
-  </div>
 
-  <div class="container one-bottom" >
-    <div class="twelve columns">
-      <h3 style="color:white">Location<h3>
-      <h4 > Fig. 1 </h4>                   
-      <h5 style="color:white">
-        The location of this data is Charlotte, NC.
-      </h5>
-                         
-    </div>
-  </div>
-
-  <div id="map_1" class="one-bottom"></div>
-
-
-  <div class="container one-bottom" >
-    <div class="twelve columns">
-      <h3 style="color:white">Station Locations</h3>
-      <h4 style="color:white">Fig. 2 </h4>                         
-      <h5 style="color:white">
-        B-Cycle locations of stations in Charlotte, NC with their station_ID, street address, number of bikes available, and number of docks available.
-      </h5>
-    </div>
-  </div>
-
-  <div id="map_2" class="one-bottom"></div>
-
-
-  <div class="container one-bottom" >
-    <div class="twelve columns">
-      <h3 style="color:white">Station Accumulation Levels</h3>
-      <h4 style="color:white">Fig. 3 </h4>                         
-      <h5 style="color:white">
-        Accumulation levels of all B-Cycle stations located in Charlotte, NC. Represents total station availability. 
-      </h5>
-      <h7 style="color: white;">
-        (Blue are electric bikes, Green are classic bikes, and Orange are smart bikes).
-      </h7>
-    </div>
-  </div>
-
-
-  <div id="map_3" class="one-bottom"></div>
-                                                                     
-
-
-  <div class="container one-bottom" >
-    <h3 style="color:white">Below are maps that show relationships between B-Cycle station data and other attributes within the Charlotte area.</h3>
-  </div>
-
-
-        
-   
-  <div class="container one-bottom" >
-      <h3 style="color:white">Zoning Information </h3>
-      <h4 style="color:white">Fig. 4 </h4>                             
-      <h5 style="color:white">This map shows the zoning information at any given B-Cycle station location. </h5>                                                    
-      <img class="container one-bottom" src="img/diagram 2-01.jpg">
-      <h3 style="color:white">CATS Bus Stop Locations </h3>
-      <h4 style="color:white">Fig. 5 </h4>                                                            
-      <h5 style="color:white">This map shows the relationship between the B-Cycle station locations and the CATS bus stop locations in Charlotte. </h5>                             
-      <img class="container one-bottom" src="img/1-01.jpg">                                                           
-      <h3 style="color:white">Bike Lane Locations </h3>
-      <h4 style="color:white">Fig. 6 </h4>                                                    
-      <h5 style="color:white">This map shows the relationship between current bike lane locations and B-Cycle station locations in Charlotte. </h5>                                                            
-      <img class="container one-bottom" src="img/diagram 3-01.jpg">
-    </div>
-  </div>
-  <div class="container one-bottom" >
-    <h2 style="color:white">Conclusion</h2>
-    <h5 style="color:white">Our maps express a story. In Fig. 3, most of the bike stations are located inside interstate 77 and 485 in the inner city accumulating the most usage combined, while there are less stations outside the city. We believe people in the inner city use these bikes to commute to and from work.
-      The stations south of Charlotte are in South End, a highly commercial area, which means people commute to and from entertainment and shopping.
-      In addition, in Fig. 5, the number of bus stations compared to bike stations are exponentially larger showing a greater interest in buses versus bikes. As you can see in the Fig. 6, there is not that many bike lanes in the city; therefore, most bikes will either be on the sidewalk or a part of traffic creating potiential self risk.</h5>
-  </div>
     <div class="container one-bottom" >
-    <h5 style="color:white">Figure 4- The B-Cycle dock locations are located beside multiple building types, but the zoning data indicates that there are not many in the areas of center city with the most residential buildings. The multi-family and condo/townhome building types shown in purple do not have many bicycle docks within a few blocks,  while government and commercial buildings have the highest number of docks adjacent to them. B-Cycle seem to have located docks at high-density workplaces and commercial buildings to allow for commuters to use the bikes as a last-mile solution. Charlotte has several dockless bike-sharing systems in place, so these are not the only available bikes to commuters.</h5>
-    
-    <h5 style="color:white">Figure 5- Figure 5 shows the relationship between CATS bus stops and B-Cycle docks in center city. Almost all of the docks have bus stops within a block of them, which allows commuters to easily access the bike sharing service for shorter trips when they arrive in Uptown via bus. Customers pay an access fee for 24 hours and can check out bikes for up to 30 minutes without paying added fees. This model works for commuters who are making multiple short trips that do not require the use of the bus system.</h5>
-   
-    <h5 style="color:white">Figure 6- This map shows the relationship between current bike lane locations and B-Cycle station locations in Charlotte. Many of the roads in Charlotte do not have bike lanes, so most of the bike traffic will share the roads or sidewalks. As the use of MoD systems increases, car traffic in the city center should decrease, allowing for safer travel via bike, but the lack of dedicated lanes could deter people from using bicycles due to safety concerns.</h5>
+      <div class="twelve columns">
+        <h3 style="color:white">Location<h3>
+        <h4 > Fig. 1 </h4>                   
+        <h5 style="color:white">
+          The location of this data is Boston, MA.
+        </h5>
+                          
+      </div>
     </div>
+
+    <div id="map_1" class="one-bottom"></div>
+
+
+    <div class="container one-bottom" >
+      <div class="twelve columns">
+        <h3 style="color:white">Station Locations</h3>
+        <h4 style="color:white">Fig. 2 </h4>                         
+        <h5 style="color:white">
+          Blue Bike locations of stations in Boston, MA with their station name, postal code, and indication if they appeared as a starting station (blue) or destination station (red).
+        </h5>
+      </div>
+    </div>
+
+    <div id="map_2" class="one-bottom"></div>
+
+
+    <div class="container one-bottom" >
+      <div class="twelve columns">
+        <h3 style="color:white">Station Accumulation Levels</h3>
+        <h4 style="color:white">Fig. 3 </h4>                         
+        <h5 style="color:white">
+          Accumulation levels of all B-Cycle stations located in Charlotte, NC. Represents total station availability. 
+        </h5>
+        <h7 style="color: white;">
+          (Blue are electric bikes, Green are classic bikes, and Orange are smart bikes).
+        </h7>
+      </div>
+    </div>
+
+
+    <div id="map_3" class="one-bottom"></div>
+                                                                      
+
+
+    <div class="container one-bottom" >
+      <h3 style="color:white">Below are maps that show relationships between B-Cycle station data and other attributes within the Charlotte area.</h3>
+    </div>
+
+
+          
     
-  <div class="container one-bottom" >
-    <h2 style="color:white">Discussion</h2>
-    <h4 style="color:white">Based off all given data, these are some suggestions we have to improve the relationships between stations and other attributes in Charlotte.</h4>
-    <h5 style="color:white">1. Expand B-Cycle station locations to more residential areas both within the city and outside of the city to give local commuters more mobility options.</h5>  
-    <h5 style="color:white">2. Coordinate future expansion of CATS bus stop locations to all B-Cycle station locations, giving those using the CATS bus system more mobility options going to and from the bus stops.</h5> 
-    <h5 style="color:white">3. Expand bike lane infrastructure within the city to reach more B-Cycle station locations.</h5> 
-    <h5 style="color:white">4. Coordinate future expansion of B-Cycle station locations with stop locations of other mobility services including the LYNX BlueLine and future options like the LYNX SilverLine.</h5> 
-  </div>                                 
-
-  <div class="container one-bottom" >
-    <h2 style="color:white">Team & Contributions</h2>
-    <h3 style="color:white">Ryan Carriere</h3>
-    <h5 style="color:white">Ryan Carriere contributed to creating the formal heading section of the page with, introduction, popups/explanation in figure 2, page orientation, and conclusion. </h5>
-    <h3 style="color:white">Coral Rembert</h3>
-    <h5 style="color:white">Coral Rembert contributed to creating the Github page, finding online data, map style and data representation style (for Fig. 1-3), page organization, adding descriptions to maps, and discussion.</h5>
-    <h3 style="color:white">Anibal Robles</h3>
-    <h5 style="color:white">Anibal Robles contributed to merging the data files and finding how to make it work in Mapbox, helped in map representation, and bug fixes.</h5>
-    <h3 style="color:white">Brian Ferrell</h3>
-    <h5 style="color:white">Brian Ferrell contributed to creating diagrams with Mecklenburg county and B-Cycle data using GIS programs, webpage layout, research and conclusion. </h5>
-  </div>
-
-
-
-  <script>
-
-  L.mapbox.accessToken = 'pk.eyJ1IjoiZGltcCIsImEiOiJkRnlra3RjIn0.E9CTYzNUEx0yb3dcfV4SiA';
-
-  var map_1 = L.mapbox.map('map_1')
-  .setView([35.22732,-80.83827], 10)
-  .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
-  map_1
-  .scrollWheelZoom.disable();
-
-                                   
-  var path_o = {
-        radius :  60,
-        color : d3.rgb(16,52,166).brighter(),
-        stroke: true,
-        weight : 1,
-        fill : true,
-        Color: d3.rgb(16,52,166).brighter(),
-      };
-                                   
-  L.circleMarker([35.22732,-80.8382], path_o).addTo(map_1)
-                                   
-                                   
-  d3.csv("202006-bluebikes-tripdata.csv", function(tripData) {
-    //console.log(tripData);
-    
-    var number_of_trips = 0;
-    var number_of_stations = 0;
-
-    var trips = tripData.map(function(aData)
-    {
-      var trip = {};
-
-      //templates
-      //trip.something = +d["something"];
-
-      //time.format not working
-      //https://stackoverflow.com/a/39370458
-      //parse not working
-      //
-      //trip.something = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["something"].slice(0,-5));
-
-      //https://stackoverflow.com/a/37774663
-      var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
-
-      //trip.starttime = d3.timeFormat("%Y-%m-%d %H:%M:%S").parse(aData["starttime"].slice(0,-5));
-      //trip.stoptime = d3.timeFormat("%Y-%m-%d %H:%M:%S").parse(aData["stoptime"].slice(0,-5));
-      trip.starttime = parseTime(aData["starttime"].slice(0,-5));
-      trip.stoptime = parseTime(aData["stoptime"].slice(0,-5));
-      trip.duration = +aData["tripduration"];
-      trip.start_station = +aData["start station id"];
-      trip.end_station = +aData["end station id"];
-      trip.start_station_name = +aData["start station name"];
-      trip.end_station_name = +aData["end station name"];
-      trip.start_station_lat = +aData["start station latitude"];
-      trip.end_station_lat = +aData["end station latitude"];
-      trip.start_station_lng = +aData["start station longitude"];
-      trip.end_station_lng = +aData["end station longitude"];
-      trip.bikeid = +aData["bikeid"];
-      trip.usertype = +aData["usertype"];
-      trip.postalcode = +aData["postalcode"];
+    <div class="container one-bottom" >
+        <h3 style="color:white">Zoning Information </h3>
+        <h4 style="color:white">Fig. 4 </h4>                             
+        <h5 style="color:white">This map shows the zoning information at any given B-Cycle station location. </h5>                                                    
+        <img class="container one-bottom" src="img/diagram 2-01.jpg">
+        <h3 style="color:white">CATS Bus Stop Locations </h3>
+        <h4 style="color:white">Fig. 5 </h4>                                                            
+        <h5 style="color:white">This map shows the relationship between the B-Cycle station locations and the CATS bus stop locations in Charlotte. </h5>                             
+        <img class="container one-bottom" src="img/1-01.jpg">                                                           
+        <h3 style="color:white">Bike Lane Locations </h3>
+        <h4 style="color:white">Fig. 6 </h4>                                                    
+        <h5 style="color:white">This map shows the relationship between current bike lane locations and B-Cycle station locations in Charlotte. </h5>                                                            
+        <img class="container one-bottom" src="img/diagram 3-01.jpg">
+      </div>
+    </div>
+    <div class="container one-bottom" >
+      <h2 style="color:white">Conclusion</h2>
+      <h5 style="color:white">Our maps express a story. In Fig. 3, most of the bike stations are located inside interstate 77 and 485 in the inner city accumulating the most usage combined, while there are less stations outside the city. We believe people in the inner city use these bikes to commute to and from work.
+        The stations south of Charlotte are in South End, a highly commercial area, which means people commute to and from entertainment and shopping.
+        In addition, in Fig. 5, the number of bus stations compared to bike stations are exponentially larger showing a greater interest in buses versus bikes. As you can see in the Fig. 6, there is not that many bike lanes in the city; therefore, most bikes will either be on the sidewalk or a part of traffic creating potiential self risk.</h5>
+    </div>
+      <div class="container one-bottom" >
+      <h5 style="color:white">Figure 4- The B-Cycle dock locations are located beside multiple building types, but the zoning data indicates that there are not many in the areas of center city with the most residential buildings. The multi-family and condo/townhome building types shown in purple do not have many bicycle docks within a few blocks,  while government and commercial buildings have the highest number of docks adjacent to them. B-Cycle seem to have located docks at high-density workplaces and commercial buildings to allow for commuters to use the bikes as a last-mile solution. Charlotte has several dockless bike-sharing systems in place, so these are not the only available bikes to commuters.</h5>
       
-      return trip;
-    });
-
-    stationData = getStationsFromTrips(trips);
-			od_matrix = createMatrix(trips, stationData);
-
-		var color = d3.scaleLinear()
-			.domain([0, stationData.length])
-			.range([d3.rgb(255,0,0), d3.rgb(50,0,0)]);
-
-    var map_2 = L.mapbox.map('map_2')
-    .setView([42.354659,-71.053181], 12)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
-    map_2
-    .scrollWheelZoom.disable();
-
-    stationData.forEach(function(station){
-      station.start_station_lat = +station.start_station_lat;
-      station.start_station_lng = +station.start_station_lng;
-      var path_options = {
-        radius :  6,
-        color : d3.rgb(16,52,166).brighter(),
-        stroke: true,
-        weight : 1,
-        fill : true,
-        Color: d3.rgb(16,52,166).brighter(),
-      };
-      L.circleMarker([station.start_station_lat, station.start_station_lng], path_options).addTo(map_2).bindPopup("Station_ID: " + station.start_station + "<br>Postal Code: </br>"+ station.postalcode);// + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
-    });
+      <h5 style="color:white">Figure 5- Figure 5 shows the relationship between CATS bus stops and B-Cycle docks in center city. Almost all of the docks have bus stops within a block of them, which allows commuters to easily access the bike sharing service for shorter trips when they arrive in Uptown via bus. Customers pay an access fee for 24 hours and can check out bikes for up to 30 minutes without paying added fees. This model works for commuters who are making multiple short trips that do not require the use of the bus system.</h5>
     
-    /*
-    var map_3 = L.mapbox.map('map_3')
-    .setView([35.22732,-80.83827], 12)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
-    map_3
-    .scrollWheelZoom.disable();
+      <h5 style="color:white">Figure 6- This map shows the relationship between current bike lane locations and B-Cycle station locations in Charlotte. Many of the roads in Charlotte do not have bike lanes, so most of the bike traffic will share the roads or sidewalks. As the use of MoD systems increases, car traffic in the city center should decrease, allowing for safer travel via bike, but the lack of dedicated lanes could deter people from using bicycles due to safety concerns.</h5>
+      </div>
+      
+    <div class="container one-bottom" >
+      <h2 style="color:white">Discussion</h2>
+      <h4 style="color:white">Based off all given data, these are some suggestions we have to improve the relationships between stations and other attributes in Charlotte.</h4>
+      <h5 style="color:white">1. Expand B-Cycle station locations to more residential areas both within the city and outside of the city to give local commuters more mobility options.</h5>  
+      <h5 style="color:white">2. Coordinate future expansion of CATS bus stop locations to all B-Cycle station locations, giving those using the CATS bus system more mobility options going to and from the bus stops.</h5> 
+      <h5 style="color:white">3. Expand bike lane infrastructure within the city to reach more B-Cycle station locations.</h5> 
+      <h5 style="color:white">4. Coordinate future expansion of B-Cycle station locations with stop locations of other mobility services including the LYNX BlueLine and future options like the LYNX SilverLine.</h5> 
+    </div>                                 
 
-    stations.start_station_id.forEach(function(station){
-      station.start_station_latitude = +station.start_station_latitude;
-      station.start_station_longitude = +station.start_station_longitude;
-      var inventory_level = station.num_bikes_available / (station.num_bikes_available+station.num_docks_available);
-      var path_options = {
-        radius :  0.5 * (station.num_bikes_available + station.num_docks_available),
-        color : d3.rgb(16,52,166).brighter(),
-        fillColor : (function(){
-          if(station.num_bikes_available_types.electric > 0) {
-            if(inventory_level > 0.5) {
-              return d3.rgb(16,52,166).darker(2)
-            }
-            return d3.rgb(16,52,166)
+    <div class="container one-bottom" >
+      <h2 style="color:white">Team & Contributions</h2>
+      <h3 style="color:white">Ryan Carriere</h3>
+      <h5 style="color:white">Ryan Carriere contributed to creating the formal heading section of the page with, introduction, popups/explanation in figure 2, page orientation, and conclusion. </h5>
+      <h3 style="color:white">Coral Rembert</h3>
+      <h5 style="color:white">Coral Rembert contributed to creating the Github page, finding online data, map style and data representation style (for Fig. 1-3), page organization, adding descriptions to maps, and discussion.</h5>
+      <h3 style="color:white">Anibal Robles</h3>
+      <h5 style="color:white">Anibal Robles contributed to merging the data files and finding how to make it work in Mapbox, helped in map representation, and bug fixes.</h5>
+      <h3 style="color:white">Brian Ferrell</h3>
+      <h5 style="color:white">Brian Ferrell contributed to creating diagrams with Mecklenburg county and B-Cycle data using GIS programs, webpage layout, research and conclusion. </h5>
+    </div>
+
+
+
+    <script>
+
+      // STEP 1: Setup
+
+      var margin = 50;
+      var width = 800;
+
+      var xPos = margin;
+      var yPos = margin;
+
+      var thickness = 30;
+      var diameter = width - 2*margin;
+      var outerRadius = diameter / 2;
+      var innerRadius = outerRadius - thickness;
+
+      L.mapbox.accessToken = 'pk.eyJ1IjoiZGltcCIsImEiOiJkRnlra3RjIn0.E9CTYzNUEx0yb3dcfV4SiA';
+
+      var map_1 = L.mapbox.map('map_1')
+      .setView([42.3601,-71.0589], 10)
+      .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
+      map_1
+      .scrollWheelZoom.disable();
+
+                                      
+      var path_o = {
+            radius :  60,
+            color : d3.rgb(16,52,166).brighter(),
+            stroke: true,
+            weight : 1,
+            fill : true,
+            Color: d3.rgb(16,52,166).brighter(),
+          };
+                                      
+      L.circleMarker([42.3601,-71.0589], path_o).addTo(map_1)
+                                      
+                                      
+      d3.csv("202006-bluebikes-tripdata.csv", function(tripData) {
+        //console.log(tripData);
+        
+        var number_of_trips = 0;
+        var number_of_stations = 0;
+
+        var trips = tripData.map(function(aData)
+        {
+          var trip = {};
+
+          //templates
+          //trip.something = +d["something"];
+
+          //time.format not working
+          //https://stackoverflow.com/a/39370458
+          //parse not working
+          //
+          //trip.something = d3.time.format("%Y-%m-%d %H:%M:%S").parse(d["something"].slice(0,-5));
+
+          //https://stackoverflow.com/a/37774663
+          //var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+
+          trip.starttime = d3.time.format("%Y-%m-%d %H:%M:%S").parse(aData["starttime"].slice(0,-5));
+          trip.stoptime = d3.time.format("%Y-%m-%d %H:%M:%S").parse(aData["stoptime"].slice(0,-5));
+          //trip.starttime = parseTime(aData["starttime"].slice(0,-5));
+          //trip.stoptime = parseTime(aData["stoptime"].slice(0,-5));
+          trip.duration = +aData["tripduration"];
+          trip.start_station = +aData["start station id"];
+          trip.end_station = +aData["end station id"];
+          trip.start_station_name = +aData["start station name"];
+          trip.end_station_name = +aData["end station name"];
+          trip.start_station_lat = +aData["start station latitude"];
+          trip.end_station_lat = +aData["end station latitude"];
+          trip.start_station_lng = +aData["start station longitude"];
+          trip.end_station_lng = +aData["end station longitude"];
+          trip.bikeid = +aData["bikeid"];
+          trip.usertype = +aData["usertype"];
+          trip.postalcode = +aData["postal code"];
+          
+          return trip;
+        });
+
+        stationData = getStationsFromTrips(trips);
+          od_matrix = createMatrix(trips, stationData);
+
+        //var color = d3.scaleLinear()
+        var color = d3.scale.linear()
+          .domain([0, stationData.length])
+          .range([d3.rgb(255,0,0), d3.rgb(50,0,0)]);
+
+        var map_2 = L.mapbox.map('map_2')
+        .setView([42.3601,-71.0589], 12)
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
+        map_2
+        .scrollWheelZoom.disable();
+
+        stationData.forEach(function(station){
+
+          station.lat = +station.lat;
+          station.lng = +station.lng;
+          
+          var path_options = {};
+          var isStart = "";
+
+          if(station.isStart == 1) {
+            path_options = {
+              radius :  6,
+              color : d3.rgb(16,52,166).brighter(),
+              stroke: true,
+              weight : 1,
+              fill : true,
+              Color: d3.rgb(16,52,166).brighter(),
+            };
+            isStart = "Starting Station";
           }
-          if(station.num_bikes_available_types.smart > 0) {
-            if(inventory_level > 0.5) {
-              return d3.rgb(245, 141, 66).darker(2)
-            }
-            return d3.rgb(245, 141, 66)
+          else{
+            path_options = {
+              radius :  6,
+              color : d3.rgb(166,16,16).brighter(),
+              stroke: true,
+              weight : 1,
+              fill : true,
+              Color: d3.rgb(166,16,16).darker(),
+            };
+            isStart = "Destination Station";
           }
-          if(station.num_bikes_available_types.classic > 0) {
-            if(inventory_level > 0.5) {
-              return d3.rgb(38, 166, 16).darker(2)
+
+
+          
+          L.circleMarker([station.lat, station.lng], path_options).addTo(map_2).bindPopup("Station Name: " + station.name + " - " + station.aType
+          + "<br>Postal code: </br>" + station.postal 
+          + "<br>" + isStart +"</br>");// + station.start_station);// + "<br>Postal Code: </br>"+ station.postalcode); + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
+          
+        });
+        
+        /*
+        var map_3 = L.mapbox.map('map_3')
+        .setView([35.22732,-80.83827], 12)
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
+        map_3
+        .scrollWheelZoom.disable();
+
+        stations.start_station_id.forEach(function(station){
+          station.start_station_latitude = +station.start_station_latitude;
+          station.start_station_longitude = +station.start_station_longitude;
+          var inventory_level = station.num_bikes_available / (station.num_bikes_available+station.num_docks_available);
+          var path_options = {
+            radius :  0.5 * (station.num_bikes_available + station.num_docks_available),
+            color : d3.rgb(16,52,166).brighter(),
+            fillColor : (function(){
+              if(station.num_bikes_available_types.electric > 0) {
+                if(inventory_level > 0.5) {
+                  return d3.rgb(16,52,166).darker(2)
+                }
+                return d3.rgb(16,52,166)
+              }
+              if(station.num_bikes_available_types.smart > 0) {
+                if(inventory_level > 0.5) {
+                  return d3.rgb(245, 141, 66).darker(2)
+                }
+                return d3.rgb(245, 141, 66)
+              }
+              if(station.num_bikes_available_types.classic > 0) {
+                if(inventory_level > 0.5) {
+                  return d3.rgb(38, 166, 16).darker(2)
+                }
+                return d3.rgb(38, 166, 16)
+              }
+              //return inventory_level > 0.5? d3.rgb(16,52,166) : d3.rgb(16,52,166).darker(2)
+            })(),
+            stroke: true,
+            weight : 1,
+            opacity : 1,
+            fillOpacity : 0.8
+          };
+          L.circleMarker([station.lat, station.lon], path_options).addTo(map_3);
+        });
+        */
+       
+        // STEP 3: Create Chord Layout
+        //var chordLayout = d3.chord()
+        var chordLayout = d3.layout.chord()
+          .matrix(od_matrix)
+          .padding(0.01)
+          .sortGroups(d3.descending); // You can also pass custom sorting functions that compare two objects like function(a,b){...}
+          // About d3.layout.chord():
+        // d3.layout.chord() is a D3 layout object. Read about D3 Layouts here: https://d3indepth.com/layouts/ and about Chord Layout here: https://d3-wiki.readthedocs.io/zh_CN/master/Chord-Layout/
+        // Once the Chord Layout is being assigned an OD matrix ( d3.layout.chord().matrix(od_matrix) ), it can return groups and chords arrays as follows:
+        // function chordLayout.groups() returns the groups
+        // function chordLayout.chords() returns the chords
+
+
+        // STEP 4: Create SVG Shape Generators for arcs and chords
+        var arc = d3.svg.arc()
+            .innerRadius(innerRadius)
+            .outerRadius(outerRadius);
+        // About d3.svg.arc():
+        // d3.svg.arc() is an SVG Shape Generator. Read more about SVG Shape Generators here: https://d3indepth.com/shapes/
+        // d3.svg.arc() takes a group object as an input and returns its path
+        // To define an arc SVG Shape Generator you first need to define the inner and outer radii
+        // function chordLayout.groups() returns an array with all groups (e.g. arc sectors)
+        // each group object contains a start angle, an end angle, an index number, and a value.
+        // for example, arc(chordLayout.groups()[2]) returns the path of the third group
+
+
+        var chord = d3.svg.chord()
+          .radius(innerRadius - 5);
+        // About d3.svg.chord():
+        // d3.svg.chord() is also an SVG Shape Generator. It takes a chord object as an input and returns its path
+        // To define a chord SVG Shape Generator you first need to define the radious
+        // chordLayout.chords() returns an array with all chords
+        // each chord object consists of a source and a target, and each of the source and target is a segment of a group with its own start angle and end angle
+        // for example, chord(chordLayout.chords()[12]) returns the path of the 13th chord
+
+
+        // STEP 5: Create the SVG and an empty group "g" to contain the Arc and Chord Shapes that you will be generating
+        var svgGroup = d3.select("body").append("svg")
+          .attr("width", 800)
+          .attr("height", 800)
+          .append("g")
+          .attr("transform", "translate(" + (xPos + outerRadius) + "," + (yPos + outerRadius) + ")");
+        // Create an SVG element in the body of the html page, and define its width and height
+        // Then, append an empty "group" (g) inside it, and determine its X,Y origin
+        // You need this g element in order to start embedding paths inside it and consider them as a single object.
+
+
+        // STEP 6: Draw Arcs/Groups
+        svgGroup.selectAll(".group")
+          .data(chordLayout.groups())
+          .enter()
+          .append("g")
+          .attr("class", "group")
+          .append("path")
+          .attr("id", function(d, i) { return "group" + i; })
+          .style("fill", function(d) { return color(d.index); })
+          .style("stroke", d3.rgb(100,0,0))
+          .style("stroke-width", 0.5)
+          .attr("d", function(d) { return arc(d)})
+          .on("hover", function (d,i) {
+          })
+          .on("click", function (d,i) {
+          });
+
+        // STEP 7: Draw Chords
+        svgGroup.selectAll(".chord")
+          .data(chordLayout.chords())
+          .enter()
+          .append("path")
+          .attr("class", "chord")
+          .style("fill", d3.rgb(180,100,100))
+          .style("stroke", d3.rgb(180,100,100).darker(3))
+          .style("opacity", 0.05)
+          .attr("d", function(d) { return chord(d)} )
+          .on("hover", function (d) {
+          })
+          .on("click", function (d,i) {
+          });
+
+
+        // STEP 8: Change attributes of Chords (example)
+        // svgGroup.selectAll(".chord")
+          // .style("opacity", function(d){
+          // 	if(d.source.index==2 || d.target.index==2)
+          // 		return 1;
+          // 	else
+          // 		return 0.1
+          // });
+
+        /********************/
+        /********************/
+        /***** FUNCTIONS ****/
+        /********************/
+        /********************/
+
+
+        function getStationsFromTrips(trips){
+          var stations = [];
+          var indexByStationName = d3.map();
+          var StationNameByIndex = d3.map();
+          var n = 0;
+          var aPostal = "";
+          var aName = "";
+          trips.forEach(function(trip) {
+            if (!trip.postalcode){aPostal = "Not Available";}
+            else {aPostal = trip.postalcode.toString();}
+            
+            if (!indexByStationName.has(trip.start_station)) {
+              //if (!trip.start_station_name){aName = "Not Available";}
+              //else {aName = String(trip.start_station_name);}
+              stations.push({
+                station_id : trip.start_station,
+                name : aName,
+                aType : typeof(trip.start_station_name),
+                name : trip.start_station_name,
+                postal : aPostal,
+                lat : trip.start_station_lat,
+                lng : trip.start_station_lng,
+                isStart: 1,
+              });
+              StationNameByIndex.set(n, trip.start_station);
+              indexByStationName.set(trip.start_station, n++);
             }
-            return d3.rgb(38, 166, 16)
-          }
-          //return inventory_level > 0.5? d3.rgb(16,52,166) : d3.rgb(16,52,166).darker(2)
-        })(),
-        stroke: true,
-        weight : 1,
-        opacity : 1,
-        fillOpacity : 0.8
-      };
-      L.circleMarker([station.lat, station.lon], path_options).addTo(map_3);
-    });
-    */
+            if (!indexByStationName.has(trip.end_station)) {
+              if (!trip.end_station_name){aName = "Not Available";}
+              else {aName = String(station.end_station_name);}
+              stations.push({
+                station_id : trip.end_station,
+                name : aName,
+                aType : typeof(trip.end_station_name),
+                name : trip.end_station_name,
+                postal : aPostal,
+                lat : trip.end_station_lat,
+                lng : trip.end_station_lng,
+                isStart: 0,
+              });
+              StationNameByIndex.set(n, trip.end_station);
+              indexByStationName.set(trip.end_station, n++);
+            }
+
+          });
+          return stations;
+        }
+
+        function createMatrix(tripData, stationData){
+          var indexByNameTrip = d3.map();
+          var nameByIndexTrip = d3.map();
+          var n = 0;
+          tripData.forEach(function(d) {
+            if (!indexByNameTrip.has(d.start_station)) {
+              nameByIndexTrip.set(n, d.start_station);
+              indexByNameTrip.set(d.start_station, n++);
+            }
+
+          });
+
+          var indexByNameStation = d3.map();
+          var nameByIndexStation = d3.map();
+          var j = 0;
+          stationData.forEach(function(d) {
+            if (!indexByNameStation.has(d.name)) {
+              nameByIndexStation.set(j, d.name);
+              indexByNameStation.set(d.name, j++);
+            }
+          });
 
 
-    /********************/
-		/********************/
-		/***** FUNCTIONS ****/
-		/********************/
-		/********************/
+          //Create the OD matrix
+          var od_matrix = [];
+          tripData.forEach(function(d) {
+            var  startStationIndex = indexByNameTrip.get(d.start_station);
+            var  endStationIndex = indexByNameTrip.get(d.end_station);
+            if (!od_matrix[startStationIndex]) {
+              od_matrix[startStationIndex] = [];
+              for (var i = 0; i < n; i++) {
+                od_matrix[startStationIndex][i] = 0;
+              }
+            }
+            od_matrix[startStationIndex][endStationIndex]++;;
+          });
+          return od_matrix;
+        }
 
-
-		function getStationsFromTrips(trips){
-			var stations = [];
-			var indexByStationName = d3.map();
-			var StationNameByIndex = d3.map();
-			var n = 0;
-			trips.forEach(function(trip) {
-				if (!indexByStationName.has(trip.start_station)) {
-					stations.push({
-						station_id : trip.start_station,
-						name : trip.start_station_name,
-						lat : trip.start_station_lat,
-						lng : trip.start_station_lng,
-					});
-					StationNameByIndex.set(n, trip.start_station);
-					indexByStationName.set(trip.start_station, n++);
-				}
-				if (!indexByStationName.has(trip.end_station)) {
-					stations.push({
-						station_id : trip.end_station,
-						name : trip.end_station_name,
-						lat : trip.end_station_lat,
-						lng : trip.end_station_lng,
-					});
-					StationNameByIndex.set(n, trip.end_station);
-					indexByStationName.set(trip.end_station, n++);
-				}
-
-			});
-			return stations;
-		}
-
-		function createMatrix(tripData, stationData){
-			var indexByNameTrip = d3.map();
-			var nameByIndexTrip = d3.map();
-			var n = 0;
-			tripData.forEach(function(d) {
-				if (!indexByNameTrip.has(d.start_station)) {
-					nameByIndexTrip.set(n, d.start_station);
-					indexByNameTrip.set(d.start_station, n++);
-				}
-
-			});
-
-			var indexByNameStation = d3.map();
-			var nameByIndexStation = d3.map();
-			var j = 0;
-			stationData.forEach(function(d) {
-				if (!indexByNameStation.has(d.name)) {
-					nameByIndexStation.set(j, d.name);
-					indexByNameStation.set(d.name, j++);
-				}
-			});
-
-
-			//Create the OD matrix
-			var od_matrix = [];
-			tripData.forEach(function(d) {
-				var  startStationIndex = indexByNameTrip.get(d.start_station);
-				var  endStationIndex = indexByNameTrip.get(d.end_station);
-				if (!od_matrix[startStationIndex]) {
-					od_matrix[startStationIndex] = [];
-					for (var i = 0; i < n; i++) {
-						od_matrix[startStationIndex][i] = 0;
-					}
-				}
-				od_matrix[startStationIndex][endStationIndex]++;;
-			});
-			return od_matrix;
-		}
-
-  });
-
-
-
-
-  </script>
-
-
-</body>
+      });
+    
+    </script>
+  </body>
 </html>
