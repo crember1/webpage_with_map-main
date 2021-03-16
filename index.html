@@ -312,8 +312,9 @@ h4 {
 
 
           
-          L.circleMarker([station.lat, station.lng], path_options).addTo(map_2).bindPopup("Station Name: " + station.name + " - " + station.aType
-          + "<br>Postal code: </br>" + station.postal 
+          L.circleMarker([station.lat, station.lng], path_options).addTo(map_2).bindPopup(
+          "Station Name: " + station.name + " - " + station.aType +
+          "<br>Postal code: </br>" + station.postal 
           + "<br>" + isStart +"</br>");// + station.start_station);// + "<br>Postal Code: </br>"+ station.postalcode); + "<br>Number of Bikes available: </br>" + station.num_bikes_available + "<br>Number of Docks available:</br>" + station.num_docks_available);
           
         });
@@ -474,9 +475,9 @@ h4 {
               //else {aName = String(trip.start_station_name);}
               stations.push({
                 station_id : trip.start_station,
-                name : aName,
-                aType : typeof(trip.start_station_name),
                 name : trip.start_station_name,
+                aType : typeof(trip.start_station_name),
+                //name : trip.start_station_name,
                 postal : aPostal,
                 lat : trip.start_station_lat,
                 lng : trip.start_station_lng,
@@ -490,9 +491,9 @@ h4 {
               else {aName = String(station.end_station_name);}
               stations.push({
                 station_id : trip.end_station,
-                name : aName,
-                aType : typeof(trip.end_station_name),
                 name : trip.end_station_name,
+                aType : typeof(trip.end_station_name),
+                //name : trip.end_station_name,
                 postal : aPostal,
                 lat : trip.end_station_lat,
                 lng : trip.end_station_lng,
